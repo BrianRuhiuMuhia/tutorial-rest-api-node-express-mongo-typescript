@@ -1,9 +1,10 @@
 const express=require("express")
-const http=require("http")
+const dotenv=require("dotenv")
 const bodyParser=require('body-parser')
 const cookieParser=require("cookie-parser")
 const cors=require("cors")
 const compression=require("compression")
+dotenv.config()
 const app=express()
 app.use(cors(
     {
@@ -11,5 +12,8 @@ app.use(cors(
     }
 ))
 app.use(cookieParser())
-app.use(bodyParser().json())
+app.use(bodyParser.json())
 app.use(compression())
+app.listen(process.env.port,()=>{
+    console.log(`server running on port ${process.env.port}`)
+})
